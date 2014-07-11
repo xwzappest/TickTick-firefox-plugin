@@ -1,0 +1,5 @@
+#ticktick_sidebar_button {
+	padding: 2px 2px;
+	list-style-image: url(chrome://ticktick_sidebar/skin/button.png);
+	background-repeat: no-repeat;
+}

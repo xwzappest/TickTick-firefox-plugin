@@ -1,0 +1,7 @@
+
+style	chrome://global/content/customizeToolbar.xul	chrome://ticktick_sidebar/skin/ticktick_sidebar.css
+overlay	chrome://browser/content/browser.xul	chrome://ticktick_sidebar/content/ticktick_sidebar.xul
+
+content	ticktick_sidebar	chrome/content/
+locale	ticktick_sidebar en-US	chrome/locale/en-US/
+skin	ticktick_sidebar	classic/1.0	chrome/skin/
