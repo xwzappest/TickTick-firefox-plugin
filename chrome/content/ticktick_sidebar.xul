@@ -3,11 +3,11 @@
 
 <!DOCTYPE dialog SYSTEM "chrome://ticktick_sidebar/locale/ticktick_sidebar.dtd" >
 
-<overlay id="ticktickbarOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<overlay id="overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script type="application/x-javascript" src="chrome://ticktick_sidebar/content/ticktick.js" />
 
     <menupopup id="viewSidebarMenu">
-        <menuitem key="key_openticktick_sidebar" observes="viewticktick_sidebar" />
+        <menuitem key="key_open_sidebar" observes="view_ticktick_sidebar" />
     </menupopup>
 
     <toolbarpalette id="BrowserToolbarPalette">
@@ -22,12 +22,12 @@
     <key id="key_search3" removeelement="true" />
 
     <keyset id="mainKeyset">
-        <key id="key_openticktick_sidebar" oncommand="XULTickTick.toggleTickTickSidebar();" key="q" modifiers="alt" />
+        <key id="key_open_sidebar" oncommand="XULTickTick.toggleTickTickSidebar();" key="q" modifiers="alt" />
     </keyset>
 
     <broadcasterset id="mainBroadcasterSet">
         <broadcaster 
-            id="viewticktick_sidebar" 
+            id="view_ticktick_sidebar" 
             autoCheck="false" 
             label="&ticktick_sidebar.title;" 
             type="checkbox" 

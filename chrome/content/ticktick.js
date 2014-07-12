@@ -1,5 +1,5 @@
 /*
-Firefox plugin for TickTick Task Manager.
+Firefox plugin for TickTick.
 
 AUTHOR
     TickTick: http://ticktick.com/
@@ -16,14 +16,17 @@ var XULTickTick = {
     },
 
     initInterface: function() {
-        var sidebarBox = document.getElementById("sidebar-box");
-        var sidebarTitle = document.getElementById('sidebar-title');
-        
+        var sidebarBox = document.getElementById("sidebar-box"),
+            sidebarTitle = document.getElementById('sidebar-title'),
+            firstRunPref = "extensions.ticktick_n.firstRunDone";
 
         if(!sidebarBox.hidden && sidebarTitle.value.indexOf('TickTick') != -1) {
             XULTickTick.toggleTickTickSidebar();
+
+            /* for firefox restart*/
+            XULTickTick.toggleTickTickSidebar();
         }
-        let firstRunPref = "extensions.ticktick_n.firstRunDone";
+        
         if (!Application.prefs.getValue(firstRunPref, null)) {
             Application.prefs.setValue(firstRunPref, true);
             XULTickTick.addToolbarButton();
@@ -32,10 +35,10 @@ var XULTickTick = {
     },
 
     addToolbarButton: function() {
-        var toolBox = document.getElementById("navigator-toolbox");
-        var toolBoxDocument = toolBox.ownerDocument;
-        var newButton;
-        var childButton;
+        var toolBox = document.getElementById("navigator-toolbox"),
+            toolBoxDocument = toolBox.ownerDocument,
+            newButton,
+            childButton;
 
         for (var i = 0; i < toolBox.childNodes.length; ++i) {
             toolbar = toolBox.childNodes[i];
@@ -58,9 +61,9 @@ var XULTickTick = {
     },
 
     createMenu: function() {
-        var menu = document.createElement('menupopup');
-        var reload_label = document.createElement('menuitem');
-        var login_logout_label = document.createElement('menuitem');
+        var menu = document.createElement('menupopup'),
+            reload_label = document.createElement('menuitem'),
+            login_logout_label = document.createElement('menuitem');
 
         menu.setAttribute('id', 'ticktick-menu');
 
@@ -87,11 +90,11 @@ var XULTickTick = {
     },
 
     toggleTickTickSidebar: function() {
-        var sidebarBox = document.getElementById("sidebar-box");
-        var sidebarTitle = document.getElementById("sidebar-title");
-        var sidebar = top.document.getElementById('sidebar');
+        var sidebarBox = document.getElementById("sidebar-box"),
+            sidebarTitle = document.getElementById("sidebar-title"),
+            sidebar = top.document.getElementById('sidebar');
         
-        toggleSidebar('viewticktick_sidebar');
+        toggleSidebar('view_ticktick_sidebar');
 
         if(!sidebarBox.hidden) {
             if(!XULTickTick.TickTick_INTER_FACE) {
@@ -111,8 +114,8 @@ var XULTickTick = {
     },
 
     hideTickTick: function() {
-        var sidebarTitle = document.getElementById("sidebar-title");
-        var sidebar = top.document.getElementById('sidebar');
+        var sidebarTitle = document.getElementById("sidebar-title"),
+            sidebar = top.document.getElementById('sidebar');
 
         if(XULTickTick.TickTick_INTER_FACE && sidebarTitle.value.indexOf('TickTick') == -1) {
             XULTickTick.TickTick_INTER_FACE.hidden = true;
