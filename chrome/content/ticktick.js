@@ -22,8 +22,7 @@ var XULTickTick = {
 
     initInterface: function() {
         var sidebarBox = document.getElementById("sidebar-box"),
-            sidebarTitle = document.getElementById('sidebar-title'),
-            firstRunPref = "extensions.ticktick_n.firstRunDone";
+            sidebarTitle = document.getElementById('sidebar-title');
 
         if(!sidebarBox.hidden && sidebarTitle.value.indexOf('TickTick') != -1) {
             XULTickTick.toggleTickTickSidebar();
@@ -31,37 +30,45 @@ var XULTickTick = {
             /* for firefox restart*/
             XULTickTick.toggleTickTickSidebar();
         }
+
+        let firstRunPref = "extensions.ticktick_n.firstRunDone";
         
         if (!Application.prefs.getValue(firstRunPref, null)) {
             Application.prefs.setValue(firstRunPref, true);
-            XULTickTick.addToolbarButton();
+            // addToolbarButton;
+            XULTickTick.installButton("nav-bar", "ticktick_sidebar_button");
+            // The "addon-bar" is available since Firefox 4
+            XULTickTick.installButton("addon-bar", "ticktick_sidebar_button");
         }
 
     },
 
-    addToolbarButton: function() {
-        var toolBox = document.getElementById("navigator-toolbox"),
-            toolBoxDocument = toolBox.ownerDocument,
-            newButton,
-            childButton;
+    /**
+     * Installs the toolbar button with the given ID into the given
+     * toolbar, if it is not already present in the document.
+     *
+     * @param {string} toolbarId The ID of the toolbar to install to.
+     * @param {string} id The ID of the button to install.
+     * @param {string} afterId The ID of the element to insert after. @optional
+     */
+    installButton: function (toolbarId, id, afterId) {
+        if (!document.getElementById(id)) {
+            var toolbar = document.getElementById(toolbarId);
 
-        for (var i = 0; i < toolBox.childNodes.length; ++i) {
-            toolbar = toolBox.childNodes[i];
-            if (toolbar.localName == "toolbar" && toolbar.getAttribute("customizable") == "true" && toolbar.id == "nav-bar") {
-                newButton = ["ticktick_sidebar_button"];
-                childButton = toolbar.firstChild;
-                while (childButton) {
-                    newButton.push(childButton.id);
-                    childButton = childButton.nextSibling;
-                }
-
-                newButton = newButton.join(",");
-                toolbar.currentSet = newButton;
-                toolbar.setAttribute("currentset", newButton);
-                toolBoxDocument.persist(toolbar.id, "currentset");
-                BrowserToolboxCustomizeDone(true);
-                break;
+            // If no afterId is given, then append the item to the toolbar
+            var before = null;
+            if (afterId) {
+                let elem = document.getElementById(afterId);
+                if (elem && elem.parentNode == toolbar)
+                    before = elem.nextElementSibling;
             }
+
+            toolbar.insertItem(id, before);
+            toolbar.setAttribute("currentset", toolbar.currentSet);
+            document.persist(toolbar.id, "currentset");
+
+            if (toolbarId == "addon-bar")
+                toolbar.collapsed = false;
         }
     },
 
