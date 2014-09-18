@@ -9,13 +9,8 @@ AUTHOR
 var XULTickTick = {
 
     init: function() {
-        if (navigator.language.substr(0,2) == 'zh') {
-            XULTickTick.TickTick_SRC = 'http://cn.ticktick.com/';
-            XULTickTick.TickTick_SIGN_OUT = 'http://cn.ticktick.com/signout';
-        }else{
-            XULTickTick.TickTick_SRC = 'http://ticktick.com/';
-            XULTickTick.TickTick_SIGN_OUT = 'http://ticktick.com/signout';
-        }
+        XULTickTick.TickTick_SRC = 'http://ticktick.com/';
+        XULTickTick.TickTick_SIGN_OUT = 'http://ticktick.com/signout';
         XULTickTick.TickTick_INTER_FACE = null;
         XULTickTick.initInterface();
     },
