@@ -4,8 +4,8 @@
     <em:id>support@ticktick.com</em:id>
     <em:type>2</em:type>
     <em:name>TickTick</em:name>
-    <em:version>0.1</em:version>
-    <em:creator>TickTick</em:creator>
+    <em:version>1.0.0</em:version>
+    <em:creator>Appest</em:creator>
     <em:homepageURL>http://ticktick.com</em:homepageURL>
     <em:iconURL>chrome://ticktick_sidebar/skin/ticktick-sidebar.png</em:iconURL>
     <em:description>Your wonderful to-do and task list to make all things done and get life well organized.</em:description>
@@ -13,7 +13,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>1.5</em:minVersion>
-        <em:maxVersion>29.*</em:maxVersion>
+        <em:maxVersion>32.*</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>
